@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   application:
@@ -31,29 +31,15 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    metadata-map:
+      management:
+        context-path: /actuator
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics
+        include: health,info,metrics,env,build,git,flyway
   endpoint:
     health:
       show-details: always
-
-# Информация для /actuator/info
-info:
-  app:
-    name: Auth Service
-    description: Authentication and Authorization Service for Microservices
-    version: 1.0.0
-  build:
-    artifact: auth-service
-    name: Auth Service API
-  eureka:
-    instance:
-      id: auth-service:8081
-  contact:
-    name: Your Name
-    email: your.email@example.com
-  environment: development
