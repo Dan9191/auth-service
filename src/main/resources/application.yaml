@@ -1,0 +1,59 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/test?currentSchema=auth_service}
+    username: test
+    password: test
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: auth_service
+  flyway:
+    schemas: auth_service
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Информация для /actuator/info
+info:
+  app:
+    name: Auth Service
+    description: Authentication and Authorization Service for Microservices
+    version: 1.0.0
+  build:
+    artifact: auth-service
+    name: Auth Service API
+  eureka:
+    instance:
+      id: auth-service:8081
+  contact:
+    name: Your Name
+    email: your.email@example.com
+  environment: development
