@@ -23,6 +23,7 @@ class SecurityConfig(
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it.requestMatchers("/api/auth/**", "/actuator/**").permitAll()
+                    .requestMatchers("/api/user/**").hasAuthority("ROLE_ADMIN")
                     .anyRequest().authenticated()
             }
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)

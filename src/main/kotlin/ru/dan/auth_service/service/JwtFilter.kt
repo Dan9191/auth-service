@@ -23,7 +23,7 @@ class JwtFilter(private val jwtUtil: JwtUtil) : OncePerRequestFilter() {
                 val username = jwtUtil.getUsernameFromToken(token)
                 val roles = jwtUtil.getRolesFromToken(token)
 
-                val authorities = roles.map { SimpleGrantedAuthority("ROLE_$it") }
+                val authorities = roles.map { SimpleGrantedAuthority(it) }
 
                 val authentication = UsernamePasswordAuthenticationToken(
                     username,

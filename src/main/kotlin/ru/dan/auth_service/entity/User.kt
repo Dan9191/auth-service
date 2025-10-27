@@ -9,8 +9,8 @@ data class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val username: String,
-    val password: String,
-    val email: String,
+    var password: String,
+    var email: String,
     @Enumerated(EnumType.STRING)
-    val role: Role = Role.USER // По умолчанию USER
+    var role: Role = Role.ROLE_USER // По умолчанию USER
 )
