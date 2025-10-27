@@ -33,7 +33,7 @@ dependencies {
 	implementation("org.flywaydb:flyway-database-postgresql")// закомментировать при переходе на h2
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("io.jsonwebtoken:jjwt-api:0.12.6")
-
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
@@ -45,6 +45,7 @@ dependencies {
 
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:postgresql")
+
 }
 
 dependencyManagement {
