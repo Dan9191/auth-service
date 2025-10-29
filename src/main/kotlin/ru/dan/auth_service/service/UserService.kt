@@ -111,4 +111,14 @@ class UserService(
             ?: throw IllegalArgumentException("User not found")
         return UserDto(user.id, user.username, user.email, user.role.name)
     }
+
+    /**
+     * Получение пользователя по имени.
+     */
+    @Transactional
+    fun getUserById(userId: Long): UserDto {
+        val user = userRepository.findUserById(userId)
+            ?: throw IllegalArgumentException("User not found")
+        return UserDto(user.id, user.username, user.email, user.role.name)
+    }
 }

@@ -36,4 +36,10 @@ class UserController(
         val user = userService.getUser(username)
         return ResponseEntity.ok(user)
     }
+
+    @GetMapping("/id/{userId}")
+    fun getUserById(@PathVariable userId: Long): ResponseEntity<UserDto> {
+        val user = userService.getUserById(userId)
+        return ResponseEntity.ok(user)
+    }
 }

@@ -27,6 +27,7 @@ class SecurityConfig(
                 it.requestMatchers("/api/auth/**", "/actuator/**").permitAll()
                     .requestMatchers("/api-docs", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/webjars/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/user/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_BOOKING_SERVICE")
+                    .requestMatchers(HttpMethod.GET, "/api/user/id/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_BOOKING_SERVICE")
                     .requestMatchers("/api/user/**").hasAuthority("ROLE_ADMIN")
                     .anyRequest().authenticated()
             }
